@@ -8,8 +8,10 @@ import SnapShotSample from "./c04/SnapShotSample"
 import DomDiff from "./c05/DomDiff";
 import AdvancedTabSelectorSample from "./c06/AdvancedTabSelector";
 import LocaleSample from "./c07/LocaleSample";
-import PureRedux from "./c08/PureRedux"
-
+//import PureRedux from "./c08/PureRedux";
+//import Wrapper from './c08/Wrapper';
+//import reducer from './reducer';
+import Counter from './c08/Counter';
 //console.log('AdvancedTabSelectorSample:' + AdvancedTabSelectorSample)
 const styles = {
   fontFamily: "sans-serif",
@@ -24,7 +26,8 @@ const routeMap = {
   domDiff: DomDiff,
   advancedTabSelectorSample: AdvancedTabSelectorSample,
   localeSample: LocaleSample,
-  pureRedux: PureRedux,
+  //pureRedux: PureRedux,
+  counter: Counter,
 };
 
 export default class App extends React.PureComponent {
