@@ -2,7 +2,7 @@
 import React, {PureComponent} from 'react';
 export default class Counter extends PureComponent {
 	incrementIfOdd() {
-		if (this.props.value % 2 == 0) {
+		if (this.props.value % 2 === 0) {
 			this.props.onIncrement();
 		}
 	}
@@ -14,8 +14,8 @@ export default class Counter extends PureComponent {
 	}
 
 	render() {
-		let { clickedTimes, multipleBase, onIncrement, onDecrement, onMultiple } = this.props;
-		//console.log('xxx:' + value + '...' + onIncrement + '...' + onDecrement);
+		let { clickedTimes, multipleBase, onIncrement, onDecrement, onMultiple ,asyncGetRequest, loading} = this.props;
+		console.log('loading:' + loading)
 		return (
 			<p>
 				Clicked it: {clickedTimes} times {'   '}
@@ -26,8 +26,10 @@ export default class Counter extends PureComponent {
 				< button onClick = {this.incrementAsync.bind(this)}> + </button>{'   '}
 
 				click it to update base: {multipleBase}
-				< button onClick={onMultiple} > * </button>{'   '}
-			</p>
+				< button onClick={onMultiple} > * </button>{'   '}&nbsp;&nbsp;
+				loading status {loading ? "loading ..." : 'unloading'}
+				<button onClick={asyncGetRequest}> async request </button>{ ' ' }
+ 			</p>
 		);
 	}
 };

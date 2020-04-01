@@ -24,9 +24,35 @@ const handleMultipleBase = (multipleBase = 1, action) => {
 	}
 }
 
+const handleAsyncGetRequest = (preState={loading:false}, action) => {
+	switch (action.type) {
+		case 'FETCH_GETS_RES': {
+			var {err, data} = action.payload;
+			return {
+				loading: false,
+				err: err,
+				data: data,
+			};
+		}
+
+		case 'FETCH_GETS_REQ': {
+			if (!preState.loading) {
+				return {
+					loading: true,
+				};
+			}else {
+				return preState;
+			}
+		}
+
+		default:
+			return preState;
+	}
+}
+
+//对象key对应state的属性
 export default combineReducers({
 	clickedTimes: handleClickedTimes,
 	multipleBase: handleMultipleBase,
+	asyncGetRequest: handleAsyncGetRequest,
 })
-
-//export default reducer1;

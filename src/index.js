@@ -3,12 +3,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 //import { render } from "react-dom";
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducer from './c08/Reducer';
 import Counter from './c08/Counter';
+import fetchGets from './c08/fetchGets';
 import ReactDOM from 'react-dom';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 const render = () => ReactDOM.render(
   <Counter
@@ -17,6 +19,8 @@ const render = () => ReactDOM.render(
     onDecrement={() => store.dispatch({type: 'DECREMENT'})}
      multipleBase={store.getState().multipleBase}
     onMultiple={() => store.dispatch({type: 'MULTIPLICATION'})}
+    asyncGetRequest={() => store.dispatch(fetchGets('http://localhost:3000/test.txt'))}
+    loading={store.getState().asyncGetRequest.loading}
   />,
   document.getElementById("root")
 )
